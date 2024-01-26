@@ -114,7 +114,8 @@ REST_FRAMEWORK = {
 # If True, all origins will be accepted (not use the whitelist below).
 CORS_ORIGIN_ALLOW_ALL = False
 CORS_ORIGIN_WHITELIST = (
-    'http://localhost:8081',
+    'http://localhost:8081/',
+    'http://localhost:4200/',
 )
 
 
