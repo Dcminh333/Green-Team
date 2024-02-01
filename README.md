@@ -2,7 +2,7 @@
 
 ## Setup:
 - Create new python virtual environment
-- run: pip install requirements.txt
+- run: pip install -r requirements.txt
 - If you do not have Angular CLI installed
     - run: npm install -g @angular/cli
     - run: cd frontend/clubscheduler && npm install
