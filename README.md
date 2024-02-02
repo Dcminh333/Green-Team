@@ -4,10 +4,11 @@
 - Create new python virtual environment (I am using python version 3.11.5)
     - I named mine .venv and added it to the gitignore so its not on the repo
 - run: pip install -r requirements.txt
-- If you do not have Angular CLI installed
-    - run: npm install -g @angular/cli
-    - run: cd frontend/clubscheduler && npm install
-
+    - This will install Django and all the necessary dependencies
+- run: cd frontend/clubscheduler-fronted && npm install
+    - This will install the node modules for the react project
+ 
+This should be enough to get the basic project structure set up, but I may have missed someting \- Donny
 
 I have been using this tutorial to get the project up and running
 
