@@ -9,11 +9,3 @@
     - This will install the node modules for the react project
  
 This should be enough to get the basic project structure set up, but I may have missed someting \- Donny
-
-I have been using this tutorial to get the project up and running
-
-https://www.bezkoder.com/django-angular-13-crud/
-
-I have not created any database models yet or configured the angular part of the project
-
-\- Donny
