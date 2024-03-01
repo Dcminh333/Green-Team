@@ -16,7 +16,7 @@ function HelloWorld() {
 
   return (
     <div>
-      <h1>Should display message below:</h1>
+      <h1>Should display message below if running backend:</h1>
       <p>MESSAGE: {message}</p>
     </div>
   );
