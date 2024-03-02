@@ -145,9 +145,9 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/5.0/howto/static-files/
 
 STATIC_URL = "/static/"
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'build/static')
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, 'build/static')
+# ]
 STATIC_ROOT= os.path.join(BASE_DIR, 'static')
 
 REST_FRAMEWORK = {
@@ -185,12 +185,21 @@ DJOSER = {
     'ACTIVATION_URL': 'activate/{uid}/{token}',
     'SEND_ACTIVATION_EMAIL': True,
     'SERIALIZERS': {
-        'user_create': 'users.serializers.CreateUserSerializer',
-        'user': "users.serializers.CreateUserSerializer",
+        'user_create': 'user_api.serializers.CreateUserSerializer',
+        'user': "user_api.serializers.CreateUserSerializer",
         'user_delete': "djoser.serializers.UserDeleteSerializer",      
     }
 }
 
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = env("EMAIL_HOST")
+EMAIL_USE_TLS = True
+EMAIL_PORT = env("EMAIL_PORT")
+EMAIL_HOST_USER = env("EMAIL_HOST_USER")
+EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
+DEFAULT_FROM_EMAIL = "info@swamp-schedules.com"
+DOMAIN = env("DOMAIN")
+SITE_NAME = "Swamp Schedulers"
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
