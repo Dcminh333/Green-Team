@@ -1,17 +1,24 @@
 export default function Navbar()
 {
     return <nav className="nav">
-        <a href="/" className="site-title">Swamp Schedules</a>
+        <a href="/" className="site-title">
+            Swamp Schedules
+            </a>
         <ul>
-            <li className="active">
-                <a href="/My Calendar">My Calendar</a>
-            </li>
-            <li>
-            <a href="/Explore Clubs">Explore Clubs</a>
-            </li>
-            <li>
-            <a href="/Contact Us">Contact Us</a>
-            </li>
+            <CustomLink href="/My Calendar">My Calendar</CustomLink>
+            <CustomLink href="/Explore Clubs">Explore Clubs</CustomLink>
+            <CustomLink href="/Contact Us">Contact Us</CustomLink>
+            <CustomLink href="/My Profile">My Profile</CustomLink>
         </ul>
     </nav>
+}
+
+function CustomLink({ href, children, ...props }) {
+    const path = window.location.pathname
+    return (
+        <li className={path === href ? "active" : ""}>
+            <a href={href} {...props}>{children}</a>
+        </li>
+    )
+
 }
