@@ -11,6 +11,8 @@ export default function Navbar()
             <CustomLink to="/explore">Explore Clubs</CustomLink>
             <CustomLink to="/contact">Contact Us</CustomLink>
             <CustomLink to="/profile">My Profile</CustomLink>
+            <CustomLink to="/login">Login</CustomLink>
+            <CustomLink to="/register">Register</CustomLink>
         </ul>
     </nav>
 }

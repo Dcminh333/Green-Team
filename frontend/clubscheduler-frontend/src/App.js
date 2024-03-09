@@ -9,6 +9,8 @@ import MyCalendar from './pages/MyCalendar';
 import ExploreClubs from './pages/ExploreClubs';
 import ContactUs from './pages/ContactUs';
 import MyProfile from './pages/MyProfile';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 function App() {
   return (
@@ -16,11 +18,13 @@ function App() {
       <Navbar />
       <div className='container'>
         <Routes>
-            <Route exact path="/" element={<Home />}/>
-            <Route exact path="/calendar" element={<MyCalendar />}/>
-            <Route exact path="/explore" element={<ExploreClubs />}/>
-            <Route exact path="/contact" element={<ContactUs />}/>
-            <Route exact path="/profile" element={<MyProfile />}/>
+            <Route path="/" element={<Home />}/>
+            <Route path="/calendar" element={<MyCalendar />}/>
+            <Route path="/explore" element={<ExploreClubs />}/>
+            <Route path="/contact" element={<ContactUs />}/>
+            <Route path="/profile" element={<MyProfile />}/>
+            <Route path="/login" element={<Login />}/>
+            <Route path="/register" element={<Register />}/>
           </Routes> 
       </div>
     </>
