@@ -42,7 +42,7 @@ body {
     padding: .25rem
 }
 
-.nav li:active {
+.nav li.active {
     background-color: #555;
 }
 
