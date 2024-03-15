@@ -1,38 +1,34 @@
 import React from 'react';
-import Navbar from './Navbar';
-import Home from './Home';
-import MyCalendar from './MyCalendar';
-import ExploreClubs from './ExploreClubs';
-import ContactUs from './ContactUs';
-import MyProfile from './MyProfile';
+import Navbar from './components/Navbar/Navbar';
+import {
+  Routes,
+  Route,
+} from "react-router-dom";
+import Home from './pages/Home';
+import MyCalendar from './pages/MyCalendar';
+import ExploreClubs from './pages/ExploreClubs';
+import ContactUs from './pages/ContactUs';
+import MyProfile from './pages/MyProfile';
+import Login from './pages/Login';
+import Register from './pages/Register';
 
 function App() {
-  let Component
-  switch (window.location.pathname){
-    case "/":
-      Component = Home
-      break
-      case "/My%20Calendar":
-        Component = MyCalendar
-        break
-        case "/Explore%20Clubs":
-          Component = ExploreClubs
-          break
-          case "/Contact%20Us":
-            Component = ContactUs
-            break
-            case "/My%20Profile":
-              Component = MyProfile
-              break
-
-  }
   return (
-  <>
-    <Navbar />
-    <div className="container">
-    <Component />
-    </div>
-  </>
+    <>
+      <Navbar />
+      <div className='container'>
+        <Routes>
+            <Route path="/" element={<Home />}/>
+            <Route path="/calendar" element={<MyCalendar />}/>
+            <Route path="/explore" element={<ExploreClubs />}/>
+            <Route path="/contact" element={<ContactUs />}/>
+            <Route path="/profile" element={<MyProfile />}/>
+            <Route path="/login" element={<Login />}/>
+            <Route path="/register" element={<Register />}/>
+          </Routes> 
+      </div>
+    </>
+      
   );
 }
 
