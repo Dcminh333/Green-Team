@@ -1,9 +1,9 @@
 import React from 'react';
+import {Routes,Route} from "react-router-dom";
+import {ToastContainer} from 'react-toastify'
+import 'react-toastify/dist/ReactToastify.css';
+
 import Navbar from './components/Navbar/Navbar';
-import {
-  Routes,
-  Route,
-} from "react-router-dom";
 import Home from './pages/Home';
 import MyCalendar from './pages/MyCalendar';
 import ExploreClubs from './pages/ExploreClubs';
@@ -11,10 +11,13 @@ import ContactUs from './pages/ContactUs';
 import MyProfile from './pages/MyProfile';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import ResetPassword from './pages/ResetPassword';
+import Activate from './pages/Activate';
 
 function App() {
   return (
     <>
+      <ToastContainer />
       <Navbar />
       <div className='container'>
         <Routes>
@@ -25,8 +28,13 @@ function App() {
             <Route path="/profile" element={<MyProfile />}/>
             <Route path="/login" element={<Login />}/>
             <Route path="/register" element={<Register />}/>
+            <Route path="/reset-password" element={<ResetPassword />}/>
+            <Route path="/activate-account" element={<Activate />}/>
+
           </Routes> 
+          
       </div>
+      
     </>
       
   );

@@ -108,7 +108,6 @@ h1 {
     font-size: 3rem;
     color: var(--color-primary);
     text-align: center;
-    margin-top: 2rem;
 }
 /* Nav Bar */
 
@@ -204,9 +203,10 @@ h1 {
     justify-content: center;
 }
 
-/* Messages */
-
-.error-message {
-    color: red;
-    margin-bottom: 10px;
-  }
+.btn-activate-account {
+  margin: auto;
+  display: block;
+  font-size: rem;
+  padding: 2rem;
+  margin-top: 5rem;
+}
