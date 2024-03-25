@@ -35,24 +35,26 @@ const Register = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
+        // UPDATE ERROR MESSAGING SYSTEM !!!!
+
         if (first_name === "") {
             toast.error("First Name is blank")
         }
-        // else if (last_name === "") {
-        //     toast.error("Last name is blank")
-        // }
-        // else if (email === "") {
-        //     toast.error("Email is blank")
-        // }
-        // else if (password === "") {
-        //     toast.error("Password is blank")
-        // }
-        // else if (re_password === "") {
-        //     toast.error("Retyped password is blank")
-        // }
-        // else if (password !== re_password) {
-        //     toast.error("Passwords do not match")
-        // }
+        else if (last_name === "") {
+            toast.error("Last name is blank")
+        }
+        else if (email === "") {
+            toast.error("Email is blank")
+        }
+        else if (password === "") {
+            toast.error("Password is blank")
+        }
+        else if (re_password === "") {
+            toast.error("Retyped password is blank")
+        }
+        else if (password !== re_password) {
+            toast.error("Passwords do not match")
+        }
         
         else {
             const userData = {
@@ -80,7 +82,7 @@ const Register = () => {
 
         dispatch(reset())
 
-    }, [isError, isSuccess, user, navigate, dispatch])
+    }, [isError, isSuccess, user, message, navigate, dispatch])
 
     return (
         <>

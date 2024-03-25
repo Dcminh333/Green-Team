@@ -36,7 +36,7 @@ const Activate = () => {
 
         dispatch(reset())
 
-    }, [isError, isSuccess, navigate, dispatch])
+    }, [isError, isSuccess, message, navigate, dispatch])
 
     return (
         <div>

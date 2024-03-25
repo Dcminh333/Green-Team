@@ -2,8 +2,9 @@ import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { BiLogInCircle } from "react-icons/bi"
 import { useDispatch, useSelector } from 'react-redux'
-import { login } from '../features/auth/authSlice'
+import { login, reset } from '../features/auth/authSlice'
 import { toast } from 'react-toastify'
+import Spinner from "../components/Spinner"
 
 const LoginPage = () => {
 
@@ -46,11 +47,16 @@ const LoginPage = () => {
             navigate("/")
         }
 
-    }, [isError, isSuccess, user, navigate, dispatch])
+        dispatch(reset())
+
+    }, [isError, isSuccess, user, message, navigate, dispatch])
 
     return (
         <>
             <div className="container auth__container">
+
+                {isLoading && <Spinner />}
+
                 <form className="auth__form">
                     <h2 className="main__title">Login <BiLogInCircle /> </h2>
                     <input type="text"
