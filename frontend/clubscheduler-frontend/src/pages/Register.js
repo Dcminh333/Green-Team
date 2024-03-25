@@ -3,8 +3,9 @@ import React from "react";
 import { BiUser } from 'react-icons/bi'
 import { toast } from "react-toastify";
 import { useDispatch, useSelector } from 'react-redux';
-import { register } from "../features/auth/authSlice";
+import { register, reset } from "../features/auth/authSlice";
 import { useNavigate } from 'react-router-dom';
+import Spinner from '../components/Spinner'
 
 const Register = () => {
 
@@ -34,10 +35,26 @@ const Register = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-
-        if (password !== re_password) {
-            toast.error("Passwords do not match")
-        } else {
+        if (first_name === "") {
+            toast.error("First Name is blank")
+        }
+        // else if (last_name === "") {
+        //     toast.error("Last name is blank")
+        // }
+        // else if (email === "") {
+        //     toast.error("Email is blank")
+        // }
+        // else if (password === "") {
+        //     toast.error("Password is blank")
+        // }
+        // else if (re_password === "") {
+        //     toast.error("Retyped password is blank")
+        // }
+        // else if (password !== re_password) {
+        //     toast.error("Passwords do not match")
+        // }
+        
+        else {
             const userData = {
                 first_name,
                 last_name,
@@ -52,6 +69,7 @@ const Register = () => {
 
     useEffect(() => {
         if (isError) {
+            console.log(message)
             toast.error(message)
         }
 
@@ -60,11 +78,16 @@ const Register = () => {
             toast.success("An activation email has been sent to your email. Please check your email")
         }
 
-    })
+        dispatch(reset())
+
+    }, [isError, isSuccess, user, navigate, dispatch])
 
     return (
         <>
             <div className="container auth__container">
+
+                {isLoading && <Spinner />}  
+
                 <form className="auth__form">
                     <h2 className="main__title">Register <BiUser /> </h2>
                     <input type="text"

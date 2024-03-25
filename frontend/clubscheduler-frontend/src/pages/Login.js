@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
 import { BiLogInCircle } from "react-icons/bi"
+import { useDispatch, useSelector } from 'react-redux'
+import { login } from '../features/auth/authSlice'
 import { toast } from 'react-toastify'
 
 const LoginPage = () => {
@@ -11,6 +13,11 @@ const LoginPage = () => {
     })
 
     const { email, password } = formData
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const { user, isLoading, isError, isSuccess, message } = useSelector((state) => state.auth)
 
     const handleChange = (e) => {
         setFormData((prev) => ({
@@ -27,10 +34,19 @@ const LoginPage = () => {
             email,
             password,
         }
+        dispatch(login(userData))
     }
 
+    useEffect(() => {
+        if (isError) {
+            toast.error(message)
+        }
 
+        if (isSuccess || user) {
+            navigate("/")
+        }
 
+    }, [isError, isSuccess, user, navigate, dispatch])
 
     return (
         <>
