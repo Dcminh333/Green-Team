@@ -12,6 +12,7 @@ import MyProfile from './pages/MyProfile';
 import Login from './pages/Login';
 import Register from './pages/Register';
 import ResetPassword from './pages/ResetPassword';
+import ResetPasswordConfirm from './pages/ResetPasswordConfirm';
 import Activate from './pages/Activate';
 import NotFound404 from './pages/NotFound404';
 
@@ -30,6 +31,7 @@ function App() {
             <Route path="/login" element={<Login />}/>
             <Route path="/register" element={<Register />}/>
             <Route path="/reset-password" element={<ResetPassword />}/>
+            <Route path="/password/reset/confirm/:uid/:token" element={<ResetPasswordConfirm />}/>
             <Route path="/activate/:uid/:token" element={<Activate />}/>
             <Route path="*" element={<NotFound404 />}/>
 

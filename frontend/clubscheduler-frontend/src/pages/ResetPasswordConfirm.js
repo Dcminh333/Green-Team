@@ -1,22 +1,24 @@
 import { useEffect, useState } from "react"
-import { useNavigate } from "react-router-dom"  
+import { useNavigate, useParams } from "react-router-dom"
 import { toast } from 'react-toastify'
 import { AiFillLock } from "react-icons/ai"
 import { useDispatch, useSelector } from 'react-redux'
 import Spinner from "../components/Spinner"
-import { resetPassword } from "../features/auth/authSlice"
+import { resetPasswordConfirm } from "../features/auth/authSlice"
 
-const ResetPassword = () => {
+const ResetPasswordConfirm = () => {
 
+    const { uid, token } = useParams()
     const [formData, setFormData] = useState({
-        "email": "",
+        'new_password': '',
+        're_new_password': ''
     })
 
-    const { email } = formData
+    const { new_password, re_new_password } = formData
 
-    const dispatch = useDispatch()
     const navigate = useNavigate()
-
+    const dispatch = useDispatch()
+    
     const { isLoading, isError, isSuccess, message } = useSelector((state) => state.auth)
 
     const handleChange = (e) => {
@@ -31,10 +33,13 @@ const ResetPassword = () => {
         e.preventDefault()
 
         const userData = {
-            email
+            uid,
+            token,
+            new_password,
+            re_new_password
         }
 
-        dispatch(resetPassword(userData))
+        dispatch(resetPasswordConfirm(userData))
     }
 
     useEffect(() => {
@@ -43,8 +48,10 @@ const ResetPassword = () => {
         }
         if (isSuccess) {
             navigate("/")
-            toast.success("A reset password email has been sent to you.")
+            toast.success("Your password was reset successfully.")
+
         }
+
 
     }, [isError, isSuccess, message, navigate, dispatch])
 
@@ -56,12 +63,19 @@ const ResetPassword = () => {
 
                     {isLoading && <Spinner />}
 
-                    <h2 className="main__title">Reset Password <AiFillLock /></h2>
-                    <input type="text"
-                        placeholder="email"
-                        name="email"
+                    <h2 className="main__title">Reset Password Here<AiFillLock /></h2>
+                    <input type="password"
+                        placeholder="New password"
+                        name="new_password"
                         onChange={handleChange}
-                        value={email}
+                        value={new_password}
+                        required
+                    />
+                    <input type="password"
+                        placeholder="Confirm new password"
+                        name="re_new_password"
+                        onChange={handleChange}
+                        value={re_new_password}
                         required
                     />
 
@@ -72,4 +86,4 @@ const ResetPassword = () => {
     )
 }
 
-export default ResetPassword
+export default ResetPasswordConfirm

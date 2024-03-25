@@ -53,6 +53,32 @@ const activate = async (userData) => {
     return response.data
 }
 
-const authService = {register, login, logout, activate}
+const resetPassword = async (userData) => {
+    const config = {
+        headers: {
+            "Content-type": "application/json"
+        }
+    }
+    const response = await axios.post(RESET_PASSWORD_URL, userData, config)
+
+    return response.data
+
+}
+
+const resetPasswordConfirm = async (userData) => {
+    const config = {
+        headers: {
+            "Content-type": "application/json"
+        }
+    }
+    const response = await axios.post(RESET_PASSWORD_CONFIRM_URL, userData, config)
+
+    return response.data
+
+}
+
+
+
+const authService = {register, login, logout, activate, resetPassword, resetPasswordConfirm}
 
 export default authService
