@@ -25,15 +25,13 @@ const Club = () => {
                         name="club_name"
                         required
                     />
-                    
+
                     <input type="text"
                         placeholder="Club Description"
                         name="club_descript"
                         required
                     />
 
-                    
-            
 
                     <button className="btn btn-primary" type="submit" onClick="">Create Club</button>
                 </form>
