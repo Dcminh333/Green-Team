@@ -11,6 +11,7 @@ import ContactUs from './pages/ContactUs';
 import MyProfile from './pages/MyProfile';
 import Login from './pages/Login';
 import Register from './pages/Register';
+import ClubEvents from './pages/ClubEvents';
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
             <Route path="/profile" element={<MyProfile />}/>
             <Route path="/login" element={<Login />}/>
             <Route path="/register" element={<Register />}/>
+            <Route path="/clubevents" element={<ClubEvents />}/>
           </Routes> 
       </div>
     </>

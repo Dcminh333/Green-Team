@@ -9,10 +9,12 @@ export default function Navbar()
         <ul>
             <CustomLink to="/calendar">My Calendar</CustomLink>
             <CustomLink to="/explore">Explore Clubs</CustomLink>
+            <CustomLink to="/clubevents">Discover Events</CustomLink>
             <CustomLink to="/contact">Contact Us</CustomLink>
             <CustomLink to="/profile">My Profile</CustomLink>
             <CustomLink to="/login">Login</CustomLink>
             <CustomLink to="/register">Register</CustomLink>
+            
         </ul>
     </nav>
 }
