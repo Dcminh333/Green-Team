@@ -2,7 +2,6 @@ import React from 'react';
 import {Routes,Route} from "react-router-dom";
 import {ToastContainer} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
-
 import Navbar from './components/Navbar/Navbar';
 import Home from './pages/Home';
 import MyCalendar from './pages/MyCalendar';
@@ -15,6 +14,7 @@ import ResetPassword from './pages/ResetPassword';
 import ResetPasswordConfirm from './pages/ResetPasswordConfirm';
 import Activate from './pages/Activate';
 import NotFound404 from './pages/NotFound404';
+import ClubEvents from './pages/ClubEvents';
 
 function App() {
   return (
@@ -33,7 +33,7 @@ function App() {
             <Route path="/password/reset/confirm/:uid/:token" element={<ResetPasswordConfirm />}/>
             <Route path="/activate/:uid/:token" element={<Activate />}/>
             <Route path="*" element={<NotFound404 />}/>
-
+            <Route path="/clubevents" element={<ClubEvents />}/>
           </Routes> 
     </>
       

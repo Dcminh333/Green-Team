@@ -28,6 +28,8 @@ export default function Navbar()
             <>
             <CustomLink to="/calendar">My Calendar</CustomLink>
             <CustomLink to="/explore">Explore Clubs</CustomLink>
+            <CustomLink to="/clubevents">Discover Events</CustomLink>
+            <CustomLink to="/contact">Contact Us</CustomLink>
             <CustomLink to="/profile">My Profile</CustomLink>
             <CustomLink to="/" onClick={handleLogout}>Logout</CustomLink>
             </> 
