@@ -8,7 +8,6 @@ class SignupView(APIView):
 
     def post(self, request, format=None):
         data = request.data
-
         email = data['email']
 
 

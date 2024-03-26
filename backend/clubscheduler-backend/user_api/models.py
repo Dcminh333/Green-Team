@@ -58,8 +58,8 @@ class UserProfile(models.Model):
     can_create_club = models.BooleanField(default=True) # maybe limit users to create one club per account?
 
     # user profile info
-    phone_number = PhoneNumberField()
-    year = models.PositiveIntegerField(_('year'), default=current_year(), validators=[MinValueValidator(1980), max_value_year], blank=True, null=True)
+    phone_number = PhoneNumberField(blank=True)
+    year = models.PositiveIntegerField(_('year'), default=current_year(), validators=[MinValueValidator(1980), max_value_year], blank=True)
     bio = models.CharField(_("bio"), max_length=500, blank=True)
     shirt_size = models.CharField(max_length=12, choices=USER_SHIRT_SIZES, blank=True)
 

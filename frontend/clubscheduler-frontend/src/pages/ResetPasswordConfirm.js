@@ -49,7 +49,6 @@ const ResetPasswordConfirm = () => {
         if (isSuccess) {
             navigate("/")
             toast.success("Your password was reset successfully.")
-
         }
 
 
