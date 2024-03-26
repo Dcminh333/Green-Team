@@ -21,7 +21,6 @@ function App() {
     <>
       <ToastContainer />
       <Navbar />
-      <div className='container'>
         <Routes>
             <Route path="/" element={<Home />}/>
             <Route path="/calendar" element={<MyCalendar />}/>
@@ -36,9 +35,6 @@ function App() {
             <Route path="*" element={<NotFound404 />}/>
 
           </Routes> 
-          
-      </div>
-      
     </>
       
   );

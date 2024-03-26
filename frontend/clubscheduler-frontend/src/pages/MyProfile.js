@@ -5,6 +5,9 @@ export default function MyProfile() {
 
     const {userInfo} = useSelector( (state) => state.auth)
 
-
-    return <h1>My Profile</h1>
+    return (
+        <div className="container">
+             <h1>Hello, {userInfo.first_name} {userInfo.last_name} </h1>
+        </div>
+    )
 }
