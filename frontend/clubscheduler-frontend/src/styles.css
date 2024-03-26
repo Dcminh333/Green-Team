@@ -1,3 +1,5 @@
+/* ============ GLOBAL STYLES ============ */
+
 * {
     margin: 0;
     padding: 0;
@@ -33,7 +35,7 @@ body {
     line-height: 1.7;
 }
 
-/* General Styles */
+/* ============ GENERAL STYLES ============ */
 
 .container {
     width: var(--container-width-lg);
@@ -108,47 +110,6 @@ h1 {
     font-size: 3rem;
     color: var(--color-primary);
     text-align: center;
-    margin-top: 2rem;
-}
-/* Nav Bar */
-
-.nav {
-    background-color: var(--color-primary);
-    color: var(--color-white);
-    display: flex;
-    justify-content: space-between;
-    align-items: stretch;
-    gap: 2rem;
-    padding: 0 1rem;
-}
-
-.site-title {
-    font-size: 2rem;
-}
-
-.nav ul {
-    padding: 0;
-    margin: 0;
-    list-style: none;
-    display: flex;
-    gap: 1rem;
-}
-
-.nav a {
-    color: inherit;
-    text-decoration: none;
-    height: 100%;
-    display: flex;
-    align-items: center;
-    padding: .25rem
-}
-
-.nav li.active {
-    color: var(--color-accent);
-}
-
-.nav li:hover {
-    color: var(--color-primary-variant);
 }
 
 /* Auth forms (Login, Register, Profiles) */
@@ -204,9 +165,80 @@ h1 {
     justify-content: center;
 }
 
-/* Messages */
+.btn-activate-account {
+  margin: auto;
+  display: block;
+  font-size: rem;
+  padding: 2rem;
+  margin-top: 5rem;
+}
 
-.error-message {
-    color: red;
-    margin-bottom: 10px;
+/* ============ COMPONENTS ============ */
+
+/* Nav Bar */
+
+.nav {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  display: flex;
+  justify-content: space-between;
+  align-items: stretch;
+  gap: 2rem;
+  padding: 0 1rem;
+}
+
+.site-title {
+  font-size: 2rem;
+}
+
+.nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.nav a {
+  color: inherit;
+  text-decoration: none;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  padding: .25rem
+}
+
+.nav li.active {
+  color: var(--color-accent);
+}
+
+.nav li:hover {
+  color: var(--color-primary-variant);
+}
+
+/* Spinner */
+
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-top: 4px solid var(--color-primary);
+  border-radius: 50%;
+  width: 36px;
+  height: 36px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
   }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
