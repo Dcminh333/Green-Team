@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import React from "react";
 import { BiUser } from 'react-icons/bi'
 
-const Club = () => {
+const ClubCreation = () => {
 
     const [formData, setFormData] = useState({
         "club_name": "",
         "club_descript": "",
         "club_type": "",
 
-    })}
+    })
 
 
     const {club_name, club_descript, Category } = formData
@@ -38,6 +38,7 @@ const Club = () => {
             </div>
         </>
     )
+}
 
 
-export default Club;
+export default ClubCreation;
