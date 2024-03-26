@@ -153,6 +153,25 @@ h1 {
     }
   }
 
+  .auth__form Paragraph { 
+    width: 100%;
+    padding: 12px;      
+    margin-bottom: 5px;
+    border-radius: 3px; 
+    background-color: var(--color-light);
+    color: var(--color-bg-variant);
+
+    &::placeholder {
+        font-size: 1rem;
+        color: var(--color-bg-variant);
+    }
+    
+    &:valid {
+        font-size: 1rem;
+        color: var(--color-bg-variant);
+    }
+  }
+
 .auth__container {
     width: 30rem;
     margin: 5rem auto;  
