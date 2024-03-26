@@ -75,7 +75,7 @@ const Register = () => {
             toast.error(message)
         }
 
-        if (isSuccess || user) {
+        if (isSuccess) {
             navigate("/")
             toast.success("An activation email has been sent to your email. Please check your email")
         }
