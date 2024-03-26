@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "phonenumber_field",
     # Internal Apps
     'user_api.apps.UserApiConfig',
+    'profile_api.apps.ProfileApiConfig'
     
 ]
 
