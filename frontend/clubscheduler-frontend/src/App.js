@@ -15,6 +15,7 @@ import ResetPasswordConfirm from './pages/ResetPasswordConfirm';
 import Activate from './pages/Activate';
 import NotFound404 from './pages/NotFound404';
 import ClubEvents from './pages/ClubEvents';
+import ClubCreation from './pages/ClubCreation';
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
             <Route path="/explore" element={<ExploreClubs />}/>
             <Route path="/contact" element={<ContactUs />}/>
             <Route path="/profile" element={<MyProfile />}/>
+            <Route path = "/create-club" element = {<ClubCreation/>} />
             <Route path="/login" element={<Login />}/>
             <Route path="/register" element={<Register />}/>
             <Route path="/reset-password" element={<ResetPassword />}/>
