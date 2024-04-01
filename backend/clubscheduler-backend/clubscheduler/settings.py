@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     "phonenumber_field",
     # Internal Apps
     'user_api.apps.UserApiConfig',
-    'profile_api.apps.ProfileApiConfig'
+    'profile_api.apps.ProfileApiConfig',
+    'club_api.apps.ClubApiConfig',
     
 ]
 
@@ -203,6 +204,8 @@ EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = "info@swamp-schedules.com"
 DOMAIN = env("DOMAIN")
 SITE_NAME = "Swamp Schedulers"
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
