@@ -9,7 +9,6 @@ const ClubCreation = () => {
         "club_name": "",
         "club_descript": "",
         "club_type": "",
-
     })
 
     const {club_name, club_descript, Category } = formData
@@ -44,7 +43,7 @@ const ClubCreation = () => {
                     </select> 
 
                 
-                    <button className="btn btn-primary" type="submit" onClick="">Create Club</button>
+                    <button className="btn btn-primary" type="submit" >Create Club</button>
                 </form>
             </div>
         </>

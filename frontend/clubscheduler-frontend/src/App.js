@@ -34,8 +34,8 @@ function App() {
             <Route path="/reset-password" element={<ResetPassword />}/>
             <Route path="/password/reset/confirm/:uid/:token" element={<ResetPasswordConfirm />}/>
             <Route path="/activate/:uid/:token" element={<Activate />}/>
-            <Route path="*" element={<NotFound404 />}/>
             <Route path="/clubevents" element={<ClubEvents />}/>
+            <Route path="*" element={<NotFound404 />}/>
           </Routes> 
     </>
       
