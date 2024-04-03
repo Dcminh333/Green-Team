@@ -1,24 +1,23 @@
 import { useEffect, useState } from "react";
 import React from "react";
-import { BiUser } from 'react-icons/bi'
+import { MdOutlineGroups } from "react-icons/md";
 import styled from 'styled-components';
 
 const ClubCreation = () => {
 
     const [formData, setFormData] = useState({
-        "club_name": "",
-        "club_descript": "",
-        "club_type": "",
-
+        "name": "",
+        "description": "",
+        "type": "",
     })
 
-    const {club_name, club_descript, Category } = formData
+    const {name, description, category } = formData
 
     return (
         <>
-            <div className="container auth__clubcontainer">
-                <form className="auth__clubform">
-                    <h2 className="main__title">Create Club <BiUser /> </h2>
+            <div className="container form_container">
+                <form className="form">
+                    <h2 className="main__title"> Create Club <MdOutlineGroups /> </h2>
 
                     <input type="text"
                         placeholder="Club Name"
