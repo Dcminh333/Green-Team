@@ -6,9 +6,9 @@ import styled from 'styled-components';
 const ClubCreation = () => {
 
     const [formData, setFormData] = useState({
-        "name": "",
-        "description": "",
-        "type": "",
+        "club_name": "",
+        "club_descript": "",
+        "club_type": "",
     })
 
     const {name, description, category } = formData
@@ -43,7 +43,7 @@ const ClubCreation = () => {
                     </select> 
 
                 
-                    <button className="btn btn-primary" type="submit" onClick="">Create Club</button>
+                    <button className="btn btn-primary" type="submit" >Create Club</button>
                 </form>
             </div>
         </>
