@@ -13,20 +13,21 @@ def max_value_year(value):
     return MaxValueValidator(current_year() + 4)(value)   
 
 class UserProfile(models.Model):
-    USER_SHIRT_SIZES = (
-        ("Women's XS", "WOMEN_XS"),
-        ("Women's S", "WOMEN_S"),
-        ("Women's M", "WOMEN_M"),
-        ("Women's L", "WOMEN_L"),
-        ("Women's XL", "WOMEN_XL"),
-        ("Women's XXL", "WOMEN_XXL"),
-        ("Men's XS", "MEN_XS"),
-        ("Men's S", "MEN_S"),
-        ("Men's M", "MEN_M"),
-        ("Men's L", "MEN_L"),
-        ("Men's XL", "MEN_XL"),
-        ("Men's XXL", "MEN_XXL"),
-    )
+
+    USER_SHIRT_SIZES = [
+        ("WOMEN_XS", "Women's XS"),
+        ("WOMEN_S", "Women's S"),
+        ("WOMEN_M", "Women's M"),
+        ("WOMEN_L", "Women's L"),
+        ("WOMEN_XL", "Women's XL"),
+        ("WOMEN_XXL", "Women's XXL"),
+        ("MEN_XS", "Men's XS"),
+        ("MEN_S", "Men's S"),
+        ("MEN_M", "Men's M"),
+        ("MEN_L", "Men's L"),
+        ("MEN_XL", "Men's XL"),
+        ("MEN_XXL", "Men's XXL"),
+    ]
 
     # user data
     user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE)

@@ -47,7 +47,8 @@ INSTALLED_APPS = [
     "phonenumber_field",
     # Internal Apps
     'user_api.apps.UserApiConfig',
-    'profile_api.apps.ProfileApiConfig'
+    'profile_api.apps.ProfileApiConfig',
+    'club_api.apps.ClubApiConfig',
     
 ]
 
@@ -150,12 +151,10 @@ STATIC_URL = "/static/"
 # ]
 STATIC_ROOT= os.path.join(BASE_DIR, 'static')
 
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
 REST_FRAMEWORK = {
-    # Use Django's standard `django.contrib.auth` permissions,
-    # or allow read-only access for unauthenticated users.
-    # 'DEFAULT_PERMISSION_CLASSES': (
-    #     'rest_framework.permissions.IsAuthenticated',
-    # ),
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
     ),
@@ -200,6 +199,8 @@ EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
 DEFAULT_FROM_EMAIL = "info@swamp-schedules.com"
 DOMAIN = env("DOMAIN")
 SITE_NAME = "Swamp Schedulers"
+
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 

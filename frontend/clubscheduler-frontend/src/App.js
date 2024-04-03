@@ -1,7 +1,11 @@
-import React from 'react';
-import {Routes,Route} from "react-router-dom";
-import {ToastContainer} from 'react-toastify'
+import React, { useEffect } from 'react';
+import {Routes,Route, useNavigate} from "react-router-dom";
+import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { getUserInfo, reset } from './features/auth/authSlice';
+
+// components, pages
 import Navbar from './components/Navbar/Navbar';
 import Home from './pages/Home';
 import MyCalendar from './pages/MyCalendar';
@@ -18,6 +22,24 @@ import ClubEvents from './pages/ClubEvents';
 import ClubCreation from './pages/ClubCreation';
 
 function App() {
+
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
+
+    const { user, userInfo, isError, isSuccess, message } = useSelector((state) => state.auth)
+
+    useEffect(() => {
+        if (isError) {
+            toast.error(message)
+        }
+
+        if (Object.keys(userInfo).length === 0 && user) {
+            dispatch(getUserInfo())
+            dispatch(reset())
+        }
+
+    }, [isError, isSuccess, user, userInfo, message, navigate, dispatch])
+
   return (
     <>
       <ToastContainer />

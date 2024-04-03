@@ -55,11 +55,9 @@ const LoginPage = () => {
     return (
         <>
             <div className="container auth__container">
-
-                {isLoading && <Spinner />}
-
                 <form className="auth__form">
-                    <h2 className="main__title">Login <BiLogInCircle /> </h2>
+                    {isLoading && <Spinner />}
+                    <h2 className="main__title">Login  <BiLogInCircle /></h2>
                     <input type="text"
                         placeholder="email"
                         name="email"

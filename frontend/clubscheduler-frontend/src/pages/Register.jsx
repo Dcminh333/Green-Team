@@ -87,10 +87,8 @@ const Register = () => {
     return (
         <>
             <div className="container auth__container">
-
-                {isLoading && <Spinner />}  
-
                 <form className="auth__form">
+                    {isLoading && <Spinner />}  
                     <h2 className="main__title">Register <BiUser /> </h2>
                     <input type="text"
                         placeholder="First Name"
