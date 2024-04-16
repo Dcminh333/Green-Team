@@ -3,7 +3,7 @@ import {Routes,Route, useNavigate} from "react-router-dom";
 import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserInfo, reset } from './features/auth/authSlice';
+import { getUserInfo, verifyRefreshToken, reset, logout } from './features/auth/authSlice';
 
 // components, pages
 import Navbar from './components/Navbar/Navbar';
@@ -30,16 +30,20 @@ function App() {
     const { user, userInfo, isError, isSuccess, message } = useSelector((state) => state.auth)
 
     useEffect(() => {
+        if (user)
+          dispatch(verifyRefreshToken())
+        
         if (isError) {
-            toast.error(message)
+          toast.error(message)
+          dispatch(logout())
+          dispatch(reset())
         }
-
-        if (Object.keys(userInfo).length === 0 && user) {
-            dispatch(getUserInfo())
-            dispatch(reset())
+        else {
+          dispatch(getUserInfo())
+          dispatch(reset())
         }
-
-    }, [isError, isSuccess, user, userInfo, message, navigate, dispatch])
+          
+    }, [user, isError, navigate, dispatch])
 
   return (
     <>

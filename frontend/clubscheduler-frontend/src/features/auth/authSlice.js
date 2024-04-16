@@ -114,6 +114,22 @@ export const getUserInfo = createAsyncThunk(
     }
 )
 
+export const verifyRefreshToken = createAsyncThunk(
+    "auth/verifyRefreshToken",
+    async (_, thunkAPI) => {
+        try {
+            return await authService.verifyToken()
+        }
+        catch (error) {
+            const message = (error.response && error.response.data
+                && error.response.data.message) ||
+                error.message || error.toString()
+
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
 
 
 export const authSlice = createSlice({
@@ -206,6 +222,18 @@ export const authSlice = createSlice({
         .addCase(getUserInfo.fulfilled, (state, action) => {
             state.userInfo = action.payload
         })
+        .addCase(verifyRefreshToken.pending, (state) => {
+            state.isLoading = true
+        })
+        .addCase(verifyRefreshToken.rejected, (state, action) => {
+            state.isError = true
+            state.message = action.payload
+        })
+        .addCase(verifyRefreshToken.fulfilled, (state) => {
+            state.isLoading = false
+            state.isError = false
+        })
+
     }
 })
 

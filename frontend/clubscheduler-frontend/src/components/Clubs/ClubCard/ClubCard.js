@@ -3,8 +3,8 @@ import './ClubCard.css';
 import { BsFillPersonPlusFill } from "react-icons/bs";
 
 function addThumbnail(club) {
-  if (thumbnail !== null) {
-    return (<img src={club.thumbnail} alt={club.name}  />)
+  if (club.thumbnail !== null) {
+    return (<img src={club.thumbnail} alt={club.name} />)
   }
   else {
     return <BsFillPersonPlusFill />

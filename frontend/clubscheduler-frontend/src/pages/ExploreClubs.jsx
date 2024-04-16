@@ -10,28 +10,26 @@ import ClubCard from '../components/Clubs/ClubCard/ClubCard'
 const ExploreClubs = () => {
 
   const { clubs, status, error } = useSelector(state => state.clubs)
-  const { userInfo } = useSelector(state => state.auth)
+  const { user } = useSelector(state => state.auth)
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
   const clubCards = [];
+  
+  for (let club of clubs) {
+    clubCards.push(ClubCard({club}))
+  }
 
   useEffect(() => {
-
-    if (Object.keys(userInfo).length === 0) {
+    if (user) {
+      dispatch(fetchAllClubs())
+    } 
+    else {
       toast.error('Please login to view clubs')
       navigate('/login')
     }
-    else {
-      dispatch(fetchAllClubs())
-      for (let club of clubs) {
-        clubCards.push(ClubCard({club}))
-      }
-    }
-    
 
-    
-  })
+  }, [dispatch, navigate, user, error])
 
   return (
     <>
