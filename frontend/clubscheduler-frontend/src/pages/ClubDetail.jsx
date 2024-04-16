@@ -31,7 +31,7 @@ function ClubDetail(){
             toast.error(error)
         }
     
-      }, [dispatch, navigate, user])
+      }, [dispatch, navigate, user, error, pk])
 
     return (
         <>
