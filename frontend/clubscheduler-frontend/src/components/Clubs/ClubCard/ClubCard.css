@@ -7,10 +7,16 @@
     margin: 20px;
   }
   
-.club-image {
-    height: 100px;
+.club-image-container {
+    height: 150px;
     width: auto;
     border-bottom: 1px solid #ddd; /* Adding a border to separate image and details */
+}
+
+.club-image {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
 }
 
 .club-details {

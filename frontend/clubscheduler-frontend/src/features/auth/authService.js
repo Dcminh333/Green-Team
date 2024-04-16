@@ -86,7 +86,6 @@ const getUserInfo = async (accessToken) => {
     }
 
     const response = await axios.get(GET_USER_INFO, config)
-    console.log(response.data);
 
     return response.data
 }

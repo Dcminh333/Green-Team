@@ -4,17 +4,17 @@ import { BsFillPersonPlusFill } from "react-icons/bs";
 
 function addThumbnail(club) {
   if (club.thumbnail !== null) {
-    return (<img src={club.thumbnail} alt={club.name} />)
+    return (<img src={club.thumbnail} alt={club.name} className='club-image'/>)
   }
   else {
-    return <BsFillPersonPlusFill />
+    return <BsFillPersonPlusFill className='club-image' />
   }
 }
 
 const ClubCard = ({ club }) => {
   return (
-    <div className="club-card" style={{ backgroundColor: club.background_color }}>
-      <div className="club-image">
+    <div key={club.id} className="club-card" style={{ backgroundColor: club.background_color }}>
+      <div className="club-image-container">
         {addThumbnail(club)}
       </div>
       <div className="club-details">

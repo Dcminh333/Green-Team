@@ -291,7 +291,7 @@ h1 {
 .club-view {
   margin-top: 20px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr); /* Three columns with equal width */
+  grid-template-columns: repeat(4, 1fr); /* Three columns with equal width */
   gap: 20px;
 }
 

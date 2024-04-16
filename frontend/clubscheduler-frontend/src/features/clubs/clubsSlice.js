@@ -4,6 +4,7 @@ import clubsService from './clubsService';
 // Define an initial state for clubs
 const initialState = {
   clubs: [],
+  currentClub: {},
   status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
   error: null
 };
@@ -31,8 +32,26 @@ export const fetchAllClubs = createAsyncThunk(
 
 export const fetchClubDetails = createAsyncThunk(
   'clubs/fetchDetails',
-  
+  async (pk, thunkAPI)  => {
+    try {
+      if (thunkAPI.getState().auth.user) {
+        const accessToken = thunkAPI.getState().auth.user.access
+        const userData = {
+          pk: pk,
+          accessToken: accessToken
+        }
+        return await clubsService.fetchClubDetails(userData)
+      }
+    }
+    catch (error) {
+      const message = (error.response && error.response.data
+        && error.response.data.message) ||
+        error.message || error.toString()
+        console.log(message);
 
+      return thunkAPI.rejectWithValue(message)
+    } 
+  }
 )
 
 // Create a slice for clubs
@@ -44,21 +63,29 @@ const clubsSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      // Handle pending state while fetching clubs
       .addCase(fetchAllClubs.pending, (state) => {
         state.status = 'loading';
       })
-      // Handle success state after fetching clubs
       .addCase(fetchAllClubs.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.clubs = action.payload;
         state.error = null;
       })
-      // Handle error state if fetching clubs fails
       .addCase(fetchAllClubs.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
-        state.clubs = [];
+      })
+      .addCase(fetchClubDetails.pending, (state) => {
+        state.status = 'loading';
+      })
+      .addCase(fetchClubDetails.fulfilled, (state, action) => {
+        state.status = 'succeeded';
+        state.currentClub = action.payload;
+        state.error = null;
+      })
+      .addCase(fetchClubDetails.rejected, (state, action) => {
+        state.status = 'failed';
+        state.error = action.error.message;
       });
   }
 });
