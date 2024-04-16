@@ -20,6 +20,7 @@ import Activate from './pages/Activate';
 import NotFound404 from './pages/NotFound404';
 import ClubEvents from './pages/ClubEvents';
 import ClubCreation from './pages/ClubCreation';
+import ClubDetail from './pages/ClubDetail';
 
 function App() {
 
@@ -57,6 +58,7 @@ function App() {
             <Route path="/password/reset/confirm/:uid/:token" element={<ResetPasswordConfirm />}/>
             <Route path="/activate/:uid/:token" element={<Activate />}/>
             <Route path="/clubevents" element={<ClubEvents />}/>
+            <Route path="explore/:pk" element={<ClubDetail />}/>
             <Route path="*" element={<NotFound404 />}/>
           </Routes> 
     </>

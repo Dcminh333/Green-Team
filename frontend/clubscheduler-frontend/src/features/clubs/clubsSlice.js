@@ -29,6 +29,12 @@ export const fetchAllClubs = createAsyncThunk(
   }
 );
 
+export const fetchClubDetails = createAsyncThunk(
+  'clubs/fetchDetails',
+  
+
+)
+
 // Create a slice for clubs
 const clubsSlice = createSlice({
   name: 'clubs',
