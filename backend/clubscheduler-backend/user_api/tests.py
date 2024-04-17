@@ -3,26 +3,6 @@ from django.test import TestCase
 
 class UsersManagersTests(TestCase):
 
-    # def test_create_user(self):
-    #     User = get_user_model()
-    #     user = User.objects.create_user(email="normal@user.com", password="foo")
-    #     self.assertEqual(user.email, "normal@user.com")
-    #     self.assertTrue(user.is_active)
-    #     self.assertFalse(user.is_staff)
-    #     self.assertFalse(user.is_superuser)
-    #     try:
-    #         # username is None for the AbstractUser option
-    #         # username does not exist for the AbstractBaseUser option
-    #         self.assertIsNone(user.username)
-    #     except AttributeError:
-    #         pass
-    #     with self.assertRaises(TypeError):
-    #         User.objects.create_user()
-    #     with self.assertRaises(TypeError):
-    #         User.objects.create_user(email="")
-    #     with self.assertRaises(ValueError):
-    #         User.objects.create_user(email="", password="foo")
-
     def test_create_superuser(self):
         db = get_user_model()
         super_user = db.objects.create_superuser(email="super@user.com", password="foo", first_name="firstName", last_name="lastName")
