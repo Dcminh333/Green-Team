@@ -6,7 +6,7 @@ const Dropdown = styled.select`
   border-radius: 5px;
   border: 2px solid #0021A5; /* Blue border */
   background-color: #FFFFFF; /* White background */
-  color: #FF5722; /* Orange color for text */
+  color: #0021A5; /* Orange color for text */
   margin-bottom: 20px;
   font-size: 0.9rem; /* Adjust the font size here */
 `;
