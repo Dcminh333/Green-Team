@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "./authService"
+import errorHandler from "../../util/errorHandler";
 
 const user = JSON.parse(localStorage.getItem("user"))
 
@@ -18,11 +19,11 @@ export const register = createAsyncThunk(
         try {
             return await authService.register(userData)
         } catch (error) {
+            // console.log(error);
             const message = (error.response && error.response.data
                 && error.response.data.message) ||
                 error.message || error.toString()
-
-            console.log(error.response)
+            errorHandler(error)
 
             return thunkAPI.rejectWithValue(message)
         }
@@ -39,6 +40,7 @@ export const login = createAsyncThunk(
             const message = (error.response && error.response.data
                 && error.response.data.message) ||
                 error.message || error.toString()
+            errorHandler(error)
 
             return thunkAPI.rejectWithValue(message)
         }
@@ -62,6 +64,7 @@ export const activate = createAsyncThunk(
             const message = (error.response && error.response.data
                 && error.response.data.message) ||
                 error.message || error.toString()
+            errorHandler(error)
 
             return thunkAPI.rejectWithValue(message)
         }
@@ -77,6 +80,7 @@ export const resetPassword = createAsyncThunk(
             const message = (error.response && error.response.data
                 && error.response.data.message) ||
                 error.message || error.toString()
+            errorHandler(error)
 
             return thunkAPI.rejectWithValue(message)
         }
@@ -92,6 +96,7 @@ export const resetPasswordConfirm = createAsyncThunk(
             const message = (error.response && error.response.data
                 && error.response.data.message) ||
                 error.message || error.toString()
+            errorHandler(error)
 
             return thunkAPI.rejectWithValue(message)
         }
@@ -108,6 +113,7 @@ export const getUserInfo = createAsyncThunk(
             const message = (error.response && error.response.data
                 && error.response.data.message) ||
                 error.message || error.toString()
+            errorHandler(error)
 
             return thunkAPI.rejectWithValue(message)
         }
@@ -124,6 +130,7 @@ export const verifyRefreshToken = createAsyncThunk(
             const message = (error.response && error.response.data
                 && error.response.data.message) ||
                 error.message || error.toString()
+            errorHandler(error)
 
             return thunkAPI.rejectWithValue(message)
         }
