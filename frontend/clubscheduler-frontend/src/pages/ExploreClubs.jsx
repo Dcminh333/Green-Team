@@ -33,11 +33,14 @@ const ExploreClubs = () => {
 
   return (
     <>
-        <div className='container'>
-          <div className='club-view'>
-            {clubCards}
-          </div>
+      <div className='btn-row'>
+        <button className='btn btn-primary'><Link to='/create-club'>Create a Club</Link></button>
+      </div>
+      <div className='container'>
+        <div className='club-view'>
+          {clubCards}
         </div>
+      </div>
     </>
   )
 }
