@@ -1,7 +1,6 @@
 import React from 'react';
 import './ClubCard.css';
 import { BsFillPersonPlusFill } from "react-icons/bs";
-import { Link } from 'react-router-dom';
 
 function addThumbnail(club) {
   if (club.thumbnail !== null) {
@@ -15,8 +14,8 @@ function addThumbnail(club) {
 const ClubCard = ({ club }) => {
   return (
     <a key={club.id} href={'/explore/' + club.id} >
-      <div className="club-card" style={{ backgroundColor: club.background_color }}>
-        <div className="club-image-container">
+      <div className="club-card" >
+        <div className="club-image-container" style={{ backgroundColor: club.background_color }}>
           {addThumbnail(club)}
         </div>
         <div className="club-details">

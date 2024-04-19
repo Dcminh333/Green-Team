@@ -107,7 +107,8 @@ export const getUserInfo = createAsyncThunk(
     "auth/getUserInfo",
     async (_, thunkAPI) => {
         try {
-            const accessToken = thunkAPI.getState().auth.user.access
+            const userState = thunkAPI.getState().auth.user
+            const accessToken = user ? userState.access : null
             return await authService.getUserInfo(accessToken)
         } catch (error) {
             const message = (error.response && error.response.data
@@ -147,7 +148,7 @@ export const authSlice = createSlice({
             state.isLoading = false
             state.isError = false
             state.isSuccess = false
-            state.message = false
+            state.message = ""
         }
 },
     extraReducers: (builder) => {

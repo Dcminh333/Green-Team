@@ -9,13 +9,14 @@
   
 .club-image-container {
     height: 150px;
-    width: auto;
+    overflow: hidden;
     border-bottom: 1px solid #ddd; /* Adding a border to separate image and details */
 }
 
 .club-image {
-    width: 100%;
-    object-fit: cover;
+    width: 80%;
+    height: 150px;
+    object-fit: cover;   
 }
 
 .club-details {

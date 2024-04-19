@@ -27,7 +27,7 @@ function App() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const { user, userInfo, isError, isSuccess, message } = useSelector((state) => state.auth)
+    const { user, isError, isSuccess, message } = useSelector((state) => state.auth)
 
     useEffect(() => {
         if (user)
@@ -39,11 +39,11 @@ function App() {
           dispatch(reset())
         }
         else {
-          dispatch(getUserInfo())
-          dispatch(reset())
+          // dispatch(getUserInfo())
+          // dispatch(reset())
         }
           
-    }, [user, isError, navigate, dispatch])
+    }, [user, isError, dispatch, message])
 
   return (
     <>
