@@ -1,48 +1,133 @@
-import { useEffect, useState } from "react";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { MdOutlineGroups } from "react-icons/md";
-import styled from 'styled-components';
+import { useNavigate } from "react-router-dom"
+import { useDispatch, useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
+import { TwitterPicker } from 'react-color'
+import { getUserInfo } from "../features/auth/authSlice";
+import { createClub } from "../api/apiClubs";
 
 const ClubCreation = () => {
 
+  const { user, userInfo } = useSelector(state => state.auth)
+
+  const navigate = useNavigate()
+  const dispatch = useDispatch()
+
+    useEffect(() => {
+        if (!user) {
+            toast.error('Please login to view clubs')
+            navigate('/login')
+        }
+        else {
+            dispatch(getUserInfo());
+        }
+      }, [navigate, user])
+
     const [formData, setFormData] = useState({
-        "club_name": "",
-        "club_descript": "",
-        "club_type": "",
+        "name": "",
+        "thumbnail": null,
+        "description": "",
+        "background_color": "#FFFFFF",
     })
 
-    const {name, description, category } = formData
+    const {name, thumbnail, description, background_color } = formData
+
+    const handleChange = (e) => {
+        setFormData((prev) => ({
+            ...prev,
+            [e.target.name]: e.target.value
+        })
+        )
+        console.log(formData)
+    }
+
+    const handleImageChange = (e) => { 
+        setFormData((prev) => ({
+            ...prev,
+            "thumbnail": e.target.files[0]
+        })
+        )
+        console.log(formData)
+    }
+
+    const handleColorChange = (color, event) => {
+        setFormData((prev) => ({
+            ...prev,
+            "background_color": color.hex
+        })
+        )
+        console.log(formData)
+    }
+
+    const handleSubmit = (e) => {
+        e.preventDefault()
+        const clubData = {
+            name,
+            thumbnail,
+            description,
+            background_color,
+            "creator": userInfo.id,
+        }
+
+        const response = createClub(clubData);
+        if (response.error) {
+            console.log(response.error);
+        }
+        else {
+            console.log(response.data);
+        }
+
+    }
 
     return (
         <>
             <div className="container form_container">
-                <form className="form">
+                <form className="form" onSubmit={handleSubmit} >
                     <h2 className="main__title"> Create Club <MdOutlineGroups /> </h2>
 
                     <input type="text"
                         placeholder="Club Name"
-                        name="club_name"
+                        name="name"
+                        onChange={handleChange}
+                        value={name}
                         required
                     />
 
                     <textarea type="text"
-                        placeholder="Club Description"
-                        name="club_descript"
+                        placeholder="Club Description (max 100 characters)"
+                        name="description"
+                        onChange={handleChange}
+                        value={description}
                         required
                     />
 
-                 
-                    <h3>Club Type</h3>
+                    <h3>Thumbnail Image</h3>
+                    <input type="file"
+                        id="image"
+                        name="thumbnail"
+                        accept="image/png, image/jpeg"
+                        onChange={handleImageChange}      
+                        required
+                    />
+
+                    <h3>Background Color</h3>
+                    <TwitterPicker
+                        color={background_color}
+                        onChange={handleColorChange}>    
+                    </TwitterPicker>
+
+
+                    {/* ADD CLUB TYPE TO BACKEND MODEL */}
+                    {/* <h3>Club Type</h3>
                     <select className="">
-                    <option value="1">Academic</option>
-                    <option value="2">Social</option>
-                    <option value="3">Sports</option>
-                    <option value="4">Cultural</option>
-                    <option value="5">Professional</option>
+                        <option value="1">Academic</option>
+                        <option value="2">Social</option>
+                        <option value="3">Sports</option>
+                        <option value="4">Cultural</option>
+                        <option value="5">Professional</option>
+                    </select>  */}
 
-                    </select> 
-
-                
                     <button className="btn btn-primary" type="submit" >Create Club</button>
                 </form>
             </div>

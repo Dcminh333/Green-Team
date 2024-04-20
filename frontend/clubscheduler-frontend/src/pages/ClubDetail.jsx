@@ -6,11 +6,12 @@ import { toast } from 'react-toastify'
 import Spinner from "../components/Spinner"
 import { fetchClubDetails } from '../features/clubs/clubsSlice';
 import ClubView from '../components/Clubs/ClubView/ClubView';
+import { getUserInfo } from '../features/auth/authSlice';
 
 function ClubDetail(){
 
     const {pk}  = useParams()
-    const { user } = useSelector(state => state.auth)
+    const { user, userInfo } = useSelector(state => state.auth)
     const { currentClub, error, status } = useSelector(state => state.clubs)
 
     const dispatch = useDispatch()
@@ -21,6 +22,7 @@ function ClubDetail(){
         if (user) {
           // get club details
           dispatch(fetchClubDetails(pk))
+          dispatch(getUserInfo())
         }
         else {
           toast.error('Please login to view clubs')
@@ -39,8 +41,18 @@ function ClubDetail(){
         ? 
         <Spinner /> 
         :
-        <ClubView club={currentClub} />
+        <>
+          <div className='btn-row'>
+            <button className='btn btn-primary'>
+              Edit Club
+            </button>
+          </div>
+          
+          <ClubView club={currentClub} />
+        </>
         }
+
+        
         </>
     );
 }   

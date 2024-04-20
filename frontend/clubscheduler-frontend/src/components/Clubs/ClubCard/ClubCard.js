@@ -4,10 +4,10 @@ import { BsFillPersonPlusFill } from "react-icons/bs";
 
 function addThumbnail(club) {
   if (club.thumbnail !== null) {
-    return (<img src={club.thumbnail} alt={club.name + ' Logo'} className='club-image'/>)
+    return (<img src={club.thumbnail} alt={club.name + ' Logo'} className='club-thumbnail'/>)
   }
   else {
-    return <BsFillPersonPlusFill className='club-image' />
+    return <BsFillPersonPlusFill className='club-thumbnail' />
   }
 }
 
