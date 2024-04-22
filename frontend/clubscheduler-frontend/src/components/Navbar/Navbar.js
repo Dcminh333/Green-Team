@@ -23,7 +23,6 @@ export default function Navbar()
             Swamp Schedules
         </Link>
         <ul>
-            <CustomLink to="/contact">Contact Us</CustomLink>
             {user ?
             <>
             <CustomLink to="/calendar">My Calendar</CustomLink>

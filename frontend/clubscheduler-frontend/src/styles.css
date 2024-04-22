@@ -89,6 +89,11 @@ h1 {
     background-color: var(--color-accent);
     color: var(--color-white);
   }
+
+  .btn-danger {
+    background-color: #ff0000;
+    color: var(--color-white);
+  }
   
   /* Additional styles for hover/focus effects */
   .btn:hover,
@@ -297,6 +302,7 @@ h1 {
 
 .club-view {
   margin-top: 20px;
+  margin-bottom: 100px;
   display: grid;
   grid-template-columns: repeat(4, 1fr); /* Three columns with equal width */
   gap: 40px;

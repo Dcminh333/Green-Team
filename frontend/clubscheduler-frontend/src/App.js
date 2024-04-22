@@ -21,6 +21,7 @@ import NotFound404 from './pages/NotFound404';
 import ClubEvents from './pages/ClubEvents';
 import ClubCreation from './pages/ClubCreation';
 import ClubDetail from './pages/ClubDetail';
+import ClubEdit from './pages/ClubEdit';
 
 function App() {
 
@@ -63,6 +64,7 @@ function App() {
             <Route path="/activate/:uid/:token" element={<Activate />}/>
             <Route path="/clubevents" element={<ClubEvents />}/>
             <Route path="explore/:pk" element={<ClubDetail />}/>
+            <Route path="explore/edit/:pk" element={<ClubEdit />}/>
             <Route path="*" element={<NotFound404 />}/>
           </Routes> 
     </>

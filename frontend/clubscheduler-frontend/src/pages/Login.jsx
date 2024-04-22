@@ -40,11 +40,10 @@ const LoginPage = () => {
 
     useEffect(() => {
         if (isSuccess || user) {
+            dispatch(reset())
+            dispatch(getUserInfo())
             navigate("/")
         }
-
-        dispatch(reset())
-        dispatch(getUserInfo())
 
     }, [isError, isSuccess, user, message, navigate, dispatch])
 

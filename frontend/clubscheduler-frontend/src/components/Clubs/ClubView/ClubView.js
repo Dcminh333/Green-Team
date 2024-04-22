@@ -14,7 +14,6 @@ function addThumbnail(club) {
   }
 
   function addMembers(members) {
-    console.log(members);
     if (members) {
         return (
             members.length !== 0 ? (
@@ -60,7 +59,6 @@ const ClubView = ({club}) => {
                 console.log(response.data);
             }
         }
-        console.log(creator);
     }, [creator]);
 
     const getMembers = useCallback( async (club) => {
@@ -70,9 +68,7 @@ const ClubView = ({club}) => {
                     return getUser(member);
                 });
                 const userData = await Promise.all(userPromises);
-                console.log(userData);
                 setMembers(userData.map(response => response.data));
-                console.log(members);
                 setIsLoading(false);
             }
         }

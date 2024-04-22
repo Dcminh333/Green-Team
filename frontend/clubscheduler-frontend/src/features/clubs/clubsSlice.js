@@ -4,7 +4,15 @@ import clubsService from './clubsService';
 // Define an initial state for clubs
 const initialState = {
   clubs: [],
-  currentClub: {},
+  currentClub: {
+    id: null,
+    name: "",
+    thumbnail: null,
+    description: "",
+    background_color: "#FFFFFF",
+    creator: null,
+    members: [],
+  },
   status: 'idle', // 'idle' | 'loading' | 'succeeded' | 'failed'
   error: null
 };
