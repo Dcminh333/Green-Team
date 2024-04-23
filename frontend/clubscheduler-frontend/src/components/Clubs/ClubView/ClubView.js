@@ -3,6 +3,9 @@ import { getUser } from '../../../api/apiUsers';
 import './ClubView.css';
 import { BsFillPersonPlusFill } from "react-icons/bs";
 import Spinner from '../../Spinner';
+import { useSelector } from 'react-redux';
+import { joinClub } from '../../../api/apiClubs';
+import { Navigate, useNavigate } from 'react-router-dom';
 
 function addThumbnail(club) {
     if (club.thumbnail !== null) {
@@ -43,18 +46,21 @@ const ClubView = ({club}) => {
 
     const [creator, setCreator] = useState(null);
     const [members, setMembers] = useState(null);
-    const [isLoading, setIsLoading] = useState(true);
+    const [isLoadingCreator, setIsLoadingCreator] = useState(true);
+    const [isLoadingMembers, setIsLoadingMembers] = useState(true);
+    const { userInfo } = useSelector(state => state.auth)
 
+    const navigate = useNavigate();
 
     const getCreator = useCallback(async (club) => { 
         if (club.creator) {
             const response = await getUser(club.creator)
             if (response.error) {
                 console.log(response.error);
-                setIsLoading(false);
+                setIsLoadingCreator(false);
             }
             else {
-                setIsLoading(false);
+                setIsLoadingCreator(false);
                 setCreator(response.data);
                 console.log(response.data);
             }
@@ -69,14 +75,55 @@ const ClubView = ({club}) => {
                 });
                 const userData = await Promise.all(userPromises);
                 setMembers(userData.map(response => response.data));
-                setIsLoading(false);
+                setIsLoadingMembers(false);
             }
         }
         catch (e) {
-            setIsLoading(false);
+            setIsLoadingMembers(false);
             console.log(e);
         }
     }, [members, club])
+
+    const handleJoinClub = (e) => { 
+        e.preventDefault()
+          const clubData = {
+              "members": [...club.members, userInfo.id],
+          }
+          console.log(clubData);
+    
+          const response = joinClub(club.id, clubData);
+          if (response.error) {
+              console.log(response.error);
+          }
+          else {
+              navigate(0);
+              console.log(response.data);
+          }
+      }
+    
+      const handleLeaveClub = (e) => { 
+        e.preventDefault()
+            console.log(club.members.filter((member) => member !== userInfo.id));
+          const clubData = {
+              "members": club.members.filter((member) => member !== userInfo.id),
+          }
+          console.log(clubData);
+    
+          const response = joinClub(club.id, clubData);
+          if (response.error) {
+              console.log(response.error);
+          }
+          else {
+              navigate(0);
+              console.log(response.data);
+          }
+      }
+
+    function checkMembership() { 
+        if (members) {
+            return members.some(member => member.id === userInfo.id);
+        } 
+      }
 
     useEffect(() => { 
         if (!creator)
@@ -85,12 +132,22 @@ const ClubView = ({club}) => {
             getMembers(club);
     }, [club, creator, members, getCreator, getMembers]);   
 
-    if (isLoading) {
+    if (isLoadingCreator || isLoadingMembers) {
         return <Spinner />
     }
     else return (
         
         <div className="club-details">
+          { club.creator !== userInfo.id && !checkMembership() &&
+             (
+              <div className='btn-row'>
+                <button 
+                  className='btn btn-primary'
+                  onClick={handleJoinClub}>
+                  Join Club
+                </button>
+              </div>
+          )}
         <h1>{club.name}</h1>
         <div className="club-logo">
             {addThumbnail(club)}
@@ -108,6 +165,16 @@ const ClubView = ({club}) => {
                 {addMembers(members)}
             </ul>
         </div>
+        {club.creator !== userInfo.id && checkMembership() && 
+        (
+            <div className='btn-row'>
+            <button 
+                className='btn btn-danger'
+                onClick={handleLeaveClub}>
+                Leave Club
+            </button>
+            </div>
+        )}
     </div>
     );
   };

@@ -18,39 +18,9 @@ function ClubDetail() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    function checkMembership() { 
-      currentClub.members.forEach(member => {
-        if (member === userInfo.id) {
-          return true;
-        }
-      })
-      return false;
-    }
-
     function handleEditClub() { 
       navigate('/explore/edit/' + pk, 
       {state: {club: currentClub}})
-    }
-    
-    const handleJoinClub = (e) => { 
-      e.preventDefault()
-        const clubData = {
-            "members": [...currentClub.members, userInfo.id],
-        }
-        console.log(clubData);
-
-        const response = joinClub(currentClub.id, clubData);
-        if (response.error) {
-            console.log(response.error);
-        }
-        else {
-            navigate(`/explore/${currentClub.id}`)
-            console.log(response.data);
-        }
-    }
-
-    function handleLeaveClub() { 
-
     }
 
 
@@ -68,7 +38,6 @@ function ClubDetail() {
         if (error) { 
             toast.error(error)
         }
-        console.log('Membership: ', checkMembership());
     
       }, [dispatch, navigate, user, error, pk])
 
@@ -89,26 +58,7 @@ function ClubDetail() {
             </div>
           )}
 
-          { currentClub.creator !== userInfo.id && !checkMembership() &&
-             (
-              <div className='btn-row'>
-                <button 
-                  className='btn btn-primary'
-                  onClick={handleJoinClub}>
-                  Join Club
-                </button>
-              </div>
-          )}
           <ClubView club={currentClub} />
-          {
-            currentClub.creator !== userInfo.id && checkMembership() && 
-            (
-              <div className='btn-row'>
-                <button className='btn btn-danger'>
-                  Leave Club
-                </button>
-              </div>
-          )}
         </>
         }
         
