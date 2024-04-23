@@ -38,5 +38,3 @@ class UserProfile(models.Model):
     year = models.PositiveIntegerField(_('year'), default=current_year(), validators=[MinValueValidator(1980), max_value_year], blank=True)
     bio = models.CharField(_("bio"), max_length=500, blank=True)
     shirt_size = models.CharField(_("shirt_size"), max_length=12, choices=USER_SHIRT_SIZES, blank=True)
-
-    # ! Add Ememergency Contact Info !

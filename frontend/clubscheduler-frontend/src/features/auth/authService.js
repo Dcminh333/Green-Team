@@ -4,6 +4,7 @@ const BACKEND_DOMAIN = "http://localhost:8000"
 
 const REGISTER_URL = `${BACKEND_DOMAIN}/api/v1/auth/users/`
 const LOGIN_URL = `${BACKEND_DOMAIN}/api/v1/auth/jwt/create/`
+const VERIFY_TOKEN_URL = `${BACKEND_DOMAIN}/api/v1/auth/jwt/verify/`
 const ACTIVATE_URL = `${BACKEND_DOMAIN}/api/v1/auth/users/activation/`
 const RESET_PASSWORD_URL = `${BACKEND_DOMAIN}/api/v1/auth/users/reset_password/`
 const RESET_PASSWORD_CONFIRM_URL = `${BACKEND_DOMAIN}/api/v1/auth/users/reset_password_confirm/`
@@ -85,13 +86,29 @@ const getUserInfo = async (accessToken) => {
     }
 
     const response = await axios.get(GET_USER_INFO, config)
-    console.log(response.data);
+
+    return response.data
+}
+
+const verifyToken = async () => {
+    const config = {
+        headers: {
+            "Content-type": "application/json"
+        }
+    }
+
+    const user = JSON.parse(localStorage.getItem("user"))
+    const userData = {
+        "token": user.access
+    }
+
+    const response = await axios.post(VERIFY_TOKEN_URL, userData, config)
 
     return response.data
 }
 
 
 
-const authService = {register, login, logout, activate, resetPassword, resetPasswordConfirm, getUserInfo}
+const authService = {register, login, logout, activate, resetPassword, resetPasswordConfirm, getUserInfo, verifyToken}
 
 export default authService

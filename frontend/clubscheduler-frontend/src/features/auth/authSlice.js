@@ -1,5 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import authService from "./authService"
+import errorHandler from "../../util/errorHandler";
 
 const user = JSON.parse(localStorage.getItem("user"))
 
@@ -18,11 +19,11 @@ export const register = createAsyncThunk(
         try {
             return await authService.register(userData)
         } catch (error) {
+            // console.log(error);
             const message = (error.response && error.response.data
                 && error.response.data.message) ||
                 error.message || error.toString()
-
-            console.log(error.response)
+            errorHandler(error)
 
             return thunkAPI.rejectWithValue(message)
         }
@@ -39,6 +40,7 @@ export const login = createAsyncThunk(
             const message = (error.response && error.response.data
                 && error.response.data.message) ||
                 error.message || error.toString()
+            errorHandler(error)
 
             return thunkAPI.rejectWithValue(message)
         }
@@ -62,6 +64,7 @@ export const activate = createAsyncThunk(
             const message = (error.response && error.response.data
                 && error.response.data.message) ||
                 error.message || error.toString()
+            errorHandler(error)
 
             return thunkAPI.rejectWithValue(message)
         }
@@ -77,6 +80,7 @@ export const resetPassword = createAsyncThunk(
             const message = (error.response && error.response.data
                 && error.response.data.message) ||
                 error.message || error.toString()
+            errorHandler(error)
 
             return thunkAPI.rejectWithValue(message)
         }
@@ -92,6 +96,7 @@ export const resetPasswordConfirm = createAsyncThunk(
             const message = (error.response && error.response.data
                 && error.response.data.message) ||
                 error.message || error.toString()
+            errorHandler(error)
 
             return thunkAPI.rejectWithValue(message)
         }
@@ -102,12 +107,31 @@ export const getUserInfo = createAsyncThunk(
     "auth/getUserInfo",
     async (_, thunkAPI) => {
         try {
-            const accessToken = thunkAPI.getState().auth.user.access
+            const userState = thunkAPI.getState().auth.user
+            const accessToken = user ? userState.access : null
             return await authService.getUserInfo(accessToken)
         } catch (error) {
             const message = (error.response && error.response.data
                 && error.response.data.message) ||
                 error.message || error.toString()
+            errorHandler(error)
+
+            return thunkAPI.rejectWithValue(message)
+        }
+    }
+)
+
+export const verifyRefreshToken = createAsyncThunk(
+    "auth/verifyRefreshToken",
+    async (_, thunkAPI) => {
+        try {
+            return await authService.verifyToken()
+        }
+        catch (error) {
+            const message = (error.response && error.response.data
+                && error.response.data.message) ||
+                error.message || error.toString()
+            errorHandler(error)
 
             return thunkAPI.rejectWithValue(message)
         }
@@ -124,7 +148,7 @@ export const authSlice = createSlice({
             state.isLoading = false
             state.isError = false
             state.isSuccess = false
-            state.message = false
+            state.message = ""
         }
 },
     extraReducers: (builder) => {
@@ -206,6 +230,18 @@ export const authSlice = createSlice({
         .addCase(getUserInfo.fulfilled, (state, action) => {
             state.userInfo = action.payload
         })
+        .addCase(verifyRefreshToken.pending, (state) => {
+            state.isLoading = true
+        })
+        .addCase(verifyRefreshToken.rejected, (state, action) => {
+            state.isError = true
+            state.message = action.payload
+        })
+        .addCase(verifyRefreshToken.fulfilled, (state) => {
+            state.isLoading = false
+            state.isError = false
+        })
+
     }
 })
 

@@ -21,6 +21,8 @@ env = environ.Env(DEBUG=(bool,False))
 BASE_DIR = Path(__file__).resolve().parent.parent
 environ.Env.read_env(BASE_DIR / ".env")
 
+ALLOWED_HOSTS = ['*']
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.0/howto/deployment/checklist/
 
@@ -157,6 +159,7 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
+        'rest_framework.authentication.TokenAuthentication',
     ),
 }
 
@@ -196,9 +199,9 @@ EMAIL_USE_TLS = True
 EMAIL_PORT = env("EMAIL_PORT")
 EMAIL_HOST_USER = env("EMAIL_HOST_USER")
 EMAIL_HOST_PASSWORD = env("EMAIL_HOST_PASSWORD")
-DEFAULT_FROM_EMAIL = "info@swamp-schedules.com"
+DEFAULT_FROM_EMAIL = "donaldarango@ufl.edu"
 DOMAIN = env("DOMAIN")
-SITE_NAME = "Swamp Schedulers"
+SITE_NAME = "Swamp Schedules"
 
 
 # Default primary key field type

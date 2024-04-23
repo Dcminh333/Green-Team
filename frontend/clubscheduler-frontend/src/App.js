@@ -3,7 +3,7 @@ import {Routes,Route, useNavigate} from "react-router-dom";
 import {ToastContainer, toast} from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { getUserInfo, reset } from './features/auth/authSlice';
+import { getUserInfo, verifyRefreshToken, reset, logout } from './features/auth/authSlice';
 
 // components, pages
 import Navbar from './components/Navbar/Navbar';
@@ -20,25 +20,31 @@ import Activate from './pages/Activate';
 import NotFound404 from './pages/NotFound404';
 import ClubEvents from './pages/ClubEvents';
 import ClubCreation from './pages/ClubCreation';
+import ClubDetail from './pages/ClubDetail';
+import ClubEdit from './pages/ClubEdit';
 
 function App() {
 
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
-    const { user, userInfo, isError, isSuccess, message } = useSelector((state) => state.auth)
+    const { user, isError, isSuccess, message } = useSelector((state) => state.auth)
 
     useEffect(() => {
+        if (user)
+          dispatch(verifyRefreshToken())
+        
         if (isError) {
-            toast.error(message)
+          toast.error(message)
+          dispatch(logout())
+          dispatch(reset())
         }
-
-        if (Object.keys(userInfo).length === 0 && user) {
-            dispatch(getUserInfo())
-            dispatch(reset())
+        else {
+          // dispatch(getUserInfo())
+          // dispatch(reset())
         }
-
-    }, [isError, isSuccess, user, userInfo, message, navigate, dispatch])
+          
+    }, [user, isError, dispatch, message])
 
   return (
     <>
@@ -57,6 +63,8 @@ function App() {
             <Route path="/password/reset/confirm/:uid/:token" element={<ResetPasswordConfirm />}/>
             <Route path="/activate/:uid/:token" element={<Activate />}/>
             <Route path="/clubevents" element={<ClubEvents />}/>
+            <Route path="explore/:pk" element={<ClubDetail />}/>
+            <Route path="explore/edit/:pk" element={<ClubEdit />}/>
             <Route path="*" element={<NotFound404 />}/>
           </Routes> 
     </>

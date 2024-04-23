@@ -23,7 +23,6 @@ export default function Navbar()
             Swamp Schedules
         </Link>
         <ul>
-            <CustomLink to="/contact">Contact Us</CustomLink>
             {user ?
             <>
             <CustomLink to="/calendar">My Calendar</CustomLink>
@@ -44,7 +43,12 @@ export default function Navbar()
 
 function CustomLink({ to, children, ...props }) {
     const resolvedPath = useResolvedPath(to)
-    const isActive = useMatch({path: resolvedPath.pathname, end: true})
+    let isActive = useMatch({path: resolvedPath.pathname, end: true})
+
+    if (to === "/") {
+        isActive = false;
+    }
+
     return (
         <li className={isActive ? "active" : ""}>
             <Link to={to} {...props}>{children}</Link>

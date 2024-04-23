@@ -35,8 +35,6 @@ const Register = () => {
     const handleSubmit = (e) => {
         e.preventDefault()
 
-        // UPDATE ERROR MESSAGING SYSTEM !!!!
-
         if (first_name === "") {
             toast.error("First Name is blank")
         }
@@ -54,8 +52,7 @@ const Register = () => {
         }
         else if (password !== re_password) {
             toast.error("Passwords do not match")
-        }
-        
+        }  
         else {
             const userData = {
                 first_name,
@@ -72,7 +69,6 @@ const Register = () => {
     useEffect(() => {
         if (isError) {
             console.log(message)
-            toast.error(message)
         }
 
         if (isSuccess) {

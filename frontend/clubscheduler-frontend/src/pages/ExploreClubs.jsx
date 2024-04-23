@@ -14,30 +14,37 @@ const ExploreClubs = () => {
 
   const dispatch = useDispatch()
   const navigate = useNavigate()
-
   const clubCards = [];
+  
   for (let club of clubs) {
     clubCards.push(ClubCard({club}))
   }
 
   useEffect(() => {
-
-    if (!user) {
+    if (user) {
+      dispatch(fetchAllClubs())
+    } 
+    else {
       toast.error('Please login to view clubs')
       navigate('/login')
     }
-    dispatch(fetchAllClubs())
 
-    
-  }, [dispatch])
+  }, [dispatch, navigate, user, error])
 
   return (
     <>
-        <div className='container'>
-          <div className='club-view'>
-            {clubCards}
-          </div>
+      <div className='btn-row'>
+        <a href='/create-club'>
+          <button className='btn btn-primary'>
+            Create a Club
+          </button>
+        </a>
+      </div>  
+      <div className='container'>
+        <div className='club-view'>
+          {clubCards}
         </div>
+      </div>
     </>
   )
 }
