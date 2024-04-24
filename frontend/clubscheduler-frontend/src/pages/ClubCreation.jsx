@@ -76,6 +76,7 @@ const ClubCreation = () => {
         }
         else {
             console.log(response.data);
+            navigate('/explore')
         }
 
     }
